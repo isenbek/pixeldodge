@@ -1,0 +1,70 @@
+# pixeldodge.com: an app on @tinymachines/kit. Written by `kit nginx`; installed by `kit setup` as a real file in
+# sites-enabled (certbot adds the 443 lines there). Static files, index.html for the app's routes, no-cache on the
+# files that name a version, a year on the hashed assets, gzip on the text.
+server {
+    listen 80;
+    listen [::]:80;
+    server_name pixeldodge.com;
+    root /var/www/pixeldodge.com;
+    index index.html;
+
+    add_header X-Content-Type-Options nosniff always;
+    add_header Referrer-Policy strict-origin-when-cross-origin always;
+
+    # compressed on the way out: the script, the styles and the API's JSON are a third to a seventh of their size
+    # gzipped, which is most of a phone's wait. Not the account service's answers (gzip off there: they carry
+    # sign-in secrets beside what a visitor typed), and nothing already compressed (nginx leaves a body that has a
+    # Content-Encoding, such as gzipped vector tiles, as it is).
+    gzip on;
+    gzip_vary on;
+    gzip_proxied any;
+    gzip_comp_level 5;
+    gzip_min_length 1024;
+    gzip_types text/css text/plain text/javascript application/javascript application/json application/manifest+json image/svg+xml;
+
+    # sign-in, the account and Your files: the kit's account service, shared by every app on the kit (kit-accounts,
+    # accounts.tinymachines.ai); its own Host names the site. The match is exact (a regex location wins over the
+    # prefix one below), and the rewrite strips /api, as the trailing slash does on a host without an API of its own.
+    location ~ ^/api/v1/(auth(/|$)|me$|me/(prefs|passkeys|sessions|files|uploads|push)(/|$)|push/) {
+        rewrite ^/api/(.*)$ /$1 break;
+        proxy_pass              http://127.0.0.1:8120;
+        proxy_http_version      1.1;
+        proxy_set_header        Host $host;
+        proxy_set_header        X-Real-IP $remote_addr;
+        proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header        X-Forwarded-Proto $scheme;
+        client_max_body_size    2m;     # a file goes up in 1 MiB pieces (server/accounts/files.py)
+        gzip                    off;    # its answers hold sign-in secrets (see gzip above)
+    }
+    # the rest of /api/: the app's own service (deploy/pixeldodge-api.service, FastAPI on loopback). The path is kept, so
+    # its routes are /api/v1/... and its docs /api/docs, the same on the host as under kit check.
+    location /api/ {
+        proxy_pass              http://127.0.0.1:8340;
+        proxy_http_version      1.1;
+        proxy_set_header        Host $host;
+        proxy_set_header        X-Real-IP $remote_addr;
+        proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header        X-Forwarded-Proto $scheme;
+        proxy_read_timeout      30s;
+    }
+
+    # a location with an add_header of its own loses the server's (nginx adds headers from one level only), so the two
+    # above are said again wherever Cache-Control is
+    # the page's policy (bin/csp.ts, kit issue 74): what it may load from, report only. From app.yaml's origins:
+    # `kit csp --install` rewrites this line in the live file when they change
+    location = /index.html { add_header Cache-Control "no-cache" always; add_header X-Content-Type-Options nosniff always; add_header Referrer-Policy strict-origin-when-cross-origin always; add_header Content-Security-Policy-Report-Only "default-src 'self' data: blob: https://cdn.tinymachines.ai wss://cdn.tinymachines.ai; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' blob: https://cdn.tinymachines.ai; style-src 'self' 'unsafe-inline' https://cdn.tinymachines.ai; font-src 'self' data: https://cdn.tinymachines.ai; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; report-uri /api/v1/auth/csp" always; }
+    location = /sw.js { add_header Cache-Control "no-cache" always; add_header X-Content-Type-Options nosniff always; add_header Referrer-Policy strict-origin-when-cross-origin always; }
+    # the mime table of this box has no webmanifest, so the type is named here (location level: a types block at server level would replace the whole table)
+    location = /manifest.webmanifest { types { application/manifest+json webmanifest; } add_header Cache-Control "no-cache" always; add_header X-Content-Type-Options nosniff always; add_header Referrer-Policy strict-origin-when-cross-origin always; }
+    location /assets/ { add_header Cache-Control "public, max-age=31536000, immutable" always; add_header X-Content-Type-Options nosniff always; add_header Referrer-Policy strict-origin-when-cross-origin always; try_files $uri =404; }
+    location / { try_files $uri $uri/ /index.html; }
+}
+
+# www goes to the bare name. Added by hand: `kit nginx` writes the block above only, so after running it again put
+# this block back. certbot adds this block's 443 lines in the live file (the certificate names both hosts).
+server {
+    listen 80;
+    listen [::]:80;
+    server_name www.pixeldodge.com;
+    return 301 https://pixeldodge.com$request_uri;
+}
