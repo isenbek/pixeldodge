@@ -64,7 +64,7 @@ const licences = await page.evaluate(() => [...document.querySelectorAll<HTMLAnc
 const licSt = await Promise.all(licences.map((h) => fetch(`${origin}${h}`).then((r) => r.status).catch(() => 0)));
 ok(licences.length === 3 && licSt.every((x) => x === 200), `the three licence texts are served (${licSt.join(", ")})`);
 
-// 3. a theme pick survives a reload with no flash (the default is Night; pick Paper)
+// 3. a theme pick survives a reload with no flash (the default is Steel; pick the kit's Paper)
 await page.goto(`${origin}/theme`, { waitUntil: "networkidle0" });
 ok(await clickText(".theme-pick", "Paper"), "the theme page offers Paper");
 await sleep(200);
@@ -111,7 +111,8 @@ const gameErrors: string[] = [], gameHosts = new Set<string>(), gameBad: string[
 game.on("pageerror", (e) => gameErrors.push(e.message));
 game.on("response", (r) => { const u = new URL(r.url()); if (u.protocol.startsWith("http")) { gameHosts.add(u.origin); if (r.status() >= 400) gameBad.push(`${r.status()} ${u.pathname}`); } });
 await game.setViewport({ width: 1280, height: 720 });
-const gr = await game.goto(`${origin}${GAME}`, { waitUntil: "networkidle0" });
+// "load", not network idle: the game draws from its first frame and headless Chrome never calls that idle
+const gr = await game.goto(`${origin}${GAME}`, { waitUntil: "load" });
 const gameTitle = await game.title();
 ok(gr?.status() === 200 && /^MAD PROTOCOL/.test(gameTitle) && !(await game.$("header .brand")), `${GAME} is the game itself, not the app's shell (${gr?.status()}, "${gameTitle}")`);
 await sleep(1000);
