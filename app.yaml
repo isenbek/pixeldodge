@@ -5,4 +5,6 @@ name: MAD Protocol
 site: https://pixeldodge.com
 what: "MAD Protocol, a king-of-the-hill shooter in the browser: pilot an eight-foot armored robot and hold a pit against human infantry, first side to 100 points."
 show: true
+# a bare domain: www.pixeldodge.com goes to it (kit nginx writes the redirect, kit setup names both on the certificate)
+www: true
 api: { port: 8340 }

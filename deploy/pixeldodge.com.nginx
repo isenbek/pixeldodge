@@ -56,12 +56,15 @@ server {
     location = /sw.js { add_header Cache-Control "no-cache" always; add_header X-Content-Type-Options nosniff always; add_header Referrer-Policy strict-origin-when-cross-origin always; }
     # the mime table of this box has no webmanifest, so the type is named here (location level: a types block at server level would replace the whole table)
     location = /manifest.webmanifest { types { application/manifest+json webmanifest; } add_header Cache-Control "no-cache" always; add_header X-Content-Type-Options nosniff always; add_header Referrer-Policy strict-origin-when-cross-origin always; }
+    # any other page served as a file of its own (public/: a game, a guide) is asked for again each visit, as
+    # index.html is, so a new build of it shows at once (v0.3.187; pixeldodge's game at /play/index.html)
+    location ~ \.html$ { add_header Cache-Control "no-cache" always; add_header X-Content-Type-Options nosniff always; add_header Referrer-Policy strict-origin-when-cross-origin always; }
     location /assets/ { add_header Cache-Control "public, max-age=31536000, immutable" always; add_header X-Content-Type-Options nosniff always; add_header Referrer-Policy strict-origin-when-cross-origin always; try_files $uri =404; }
     location / { try_files $uri $uri/ /index.html; }
 }
 
-# www goes to the bare name. Added by hand: `kit nginx` writes the block above only, so after running it again put
-# this block back. certbot adds this block's 443 lines in the live file (the certificate names both hosts).
+# www goes to the bare name (app.yaml: www: true). certbot adds this block's 443 lines in the live file: kit setup
+# asks for a certificate that names both hosts.
 server {
     listen 80;
     listen [::]:80;
