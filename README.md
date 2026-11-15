@@ -4,29 +4,35 @@ A browser king-of-the-hill shooter. You pilot an eight-foot armored robot (a MAD
 with one AI squadmate and hold a pit in no-man's-land against human infantry.
 First side to 100 points wins. Served at https://pixeldodge.com.
 
-Everything is one HTML file plus Three.js r128 and two fonts, all self-hosted.
-There is no build step for players and no server-side code.
+The game is one HTML file plus Three.js r128 and two fonts, all self-hosted, with no build step for players. Since
+November 2026 it is packaged as an app on [the kit](https://tinykit.tinymachines.ai) (`@tinymachines/kit`): the site's
+front page says what the game is and how to play, in English, Spanish and Japanese, and the game opens from it as a
+page of its own at `/play/index.html`. The app installs, takes a theme, and keeps the game for playing with no network.
 
 ## Layout
 
 | Path | What it is |
 |---|---|
-| `site/` | The deployable game: `index.html` and `assets/`. This is the web root. |
+| `site/` | The game: `index.html` and `assets/`. `scripts/game.sh` copies it to `public/play/` before every build. |
 | `original/mad-vs-human-koth.html` | The game as it stood before the finishing pass. |
 | `build/build.py` | Rebuilds `site/index.html` from the original by applying named patches. |
-| `scripts/deploy.sh` | Copies `site/` to the server and installs the NGINX site. |
-| `deploy/nginx/pixeldodge.com.conf` | The NGINX server block. |
-| `test/` | Headless-browser checks (Playwright + Chrome). |
+| `test/` | The game's own headless-browser checks (Playwright + Chrome). |
+| `src/` | The app round the game: `app.config.ts` (who it is), `App.tsx` (the routes), `pages/Home.tsx`, `copy/` (the words, three languages), `theme.ts` (Steel and Daylight, from the game's colours). |
+| `app.yaml` | The app's manifest. |
+| `api/` | The app's API: FastAPI on the kit's `kitapi`, the base routes (`/api/v1/health`, `about`, `whoami`). |
+| `deploy/` | The systemd unit for the API and the nginx site, as `kit nginx` writes it. |
+| `scripts/check-site.ts` | The done-check: every page and the game itself, in headless Chrome. |
 
-## Deploy
+## Run, check, deploy
 
-On the Ubuntu box, from the repo root:
+    bun install
+    bun run dev        # http://localhost:4420
+    bun run check      # typecheck, lint, build, the API's tests, then scripts/check-site.ts: must end ALL OK
+    bun run deploy     # publishes a checked commit to /var/www/pixeldodge.com and restarts the API
+    bun run live       # the same check against https://pixeldodge.com
 
-    git pull
-    sudo ./scripts/deploy.sh --tls     # first time: also gets the certificate
-    sudo ./scripts/deploy.sh           # afterwards
-
-DNS for `pixeldodge.com` and `www.pixeldodge.com` has to point at the box before `--tls`.
+`bun run deploy` refuses a commit the check has not passed. The host was set up once with `bun run nginx` and
+`bun run setup` (the web root, the nginx site, the certificate, the API's unit).
 
 ## Controls
 

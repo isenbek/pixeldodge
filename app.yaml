@@ -1,0 +1,8 @@
+# The app's manifest: what it is, in a few plain fields (the kit's py/src/kitapi/manifest.py says what goes in it).
+# kit check holds it to src/app.config.ts; the app's own API serves it at /api/v1/about.
+id: pixeldodge
+name: MAD Protocol
+site: https://pixeldodge.com
+what: "MAD Protocol, a king-of-the-hill shooter in the browser: pilot an eight-foot armored robot and hold a pit against human infantry, first side to 100 points."
+show: true
+api: { port: 8340 }

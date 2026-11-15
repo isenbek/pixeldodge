@@ -1,3 +1,12 @@
 node_modules/
 site/_test.html
 .DS_Store
+dist
+dev-dist
+out
+*.tsbuildinfo
+.venv
+__pycache__/
+*.tmp
+# the game, copied from site/ by scripts/game.sh before every build
+public/play/

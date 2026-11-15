@@ -1,0 +1,37 @@
+# pixeldodge.com/api: MAD Protocol's own API, FastAPI on 127.0.0.1:8340 behind nginx. `kit nginx` writes the split (sign-in, the
+# account and Your files to the kit's account service; the rest of /api/ here, path kept, so routes are /api/v1/...).
+# `kit setup` installs, enables and starts this unit (a changed copy here replaces the installed one), `kit deploy`
+# syncs api/'s packages and restarts it, and both wait for /api/v1/health. Logs: journalctl -u pixeldodge-api.
+# StateDirectory makes /var/lib/pixeldodge-api (0700, this user) and exports it as $STATE_DIRECTORY for anything the service keeps.
+# The repo is public, so this file names no user and no home path: kit setup and kit unit fill in @USER@ and @HERE@
+# (the checkout) when they install it. Do not `sudo cp` this file as it is.
+
+[Unit]
+Description=MAD Protocol API (FastAPI), pixeldodge.com/api
+After=network.target
+
+[Service]
+Type=simple
+User=@USER@
+WorkingDirectory=@HERE@
+Environment=PYTHONUNBUFFERED=1
+Environment=PATH=/usr/local/bin:/usr/bin:/bin
+Environment=KIT_ACCOUNTS=http://127.0.0.1:8120
+Environment=KIT_SITE=https://pixeldodge.com
+
+StateDirectory=pixeldodge-api
+StateDirectoryMode=0700
+UMask=0077
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectControlGroups=true
+ProtectKernelTunables=true
+RestrictSUIDSGID=true
+ExecStart=@HERE@/api/.venv/bin/python -m uvicorn app:app --app-dir api --host 127.0.0.1 --port 8340
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target

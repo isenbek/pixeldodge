@@ -1,0 +1,77 @@
+{
+  "notHere": {
+    "title": "Not here",
+    "before": "There is no page at ",
+    "after": ". Here: {line}",
+    "home": "Home"
+  },
+  "home": {
+    "kicker": "the game",
+    "lede": "A king-of-the-hill shooter in the browser. You pilot an eight-foot armored robot, a MAD, with one AI squadmate, and hold a pit in no-man's-land against human infantry. First side to 100 points wins.",
+    "play": "Play",
+    "share": "Share",
+    "how": {
+      "title": "How it is won",
+      "text": "A side scores while it holds the pit alone: one point for every 0.9 seconds. Hold it, or clear it and take it back. The match ends when a side reaches 100."
+    },
+    "levels": {
+      "title": "Three levels",
+      "recruit": {
+        "term": "Recruit",
+        "text": "4 hostiles."
+      },
+      "veteran": {
+        "term": "Veteran",
+        "text": "6 hostiles."
+      },
+      "war": {
+        "term": "War Machine",
+        "text": "8 hostiles, with heavier and tighter fire."
+      },
+      "note": "You pick the level on the game's menu. The choice is remembered on this device."
+    },
+    "keys": {
+      "title": "Keyboard and mouse",
+      "move": {
+        "term": "W A S D",
+        "text": "Move. The arrow keys turn."
+      },
+      "aim": {
+        "term": "Mouse",
+        "text": "Aim. Click to fire, right-click for the sight."
+      },
+      "thrust": {
+        "term": "Shift",
+        "text": "Thrusters."
+      },
+      "reload": {
+        "term": "R",
+        "text": "Reload."
+      },
+      "pause": {
+        "term": "P and M",
+        "text": "Pause, and mute."
+      }
+    },
+    "touch": {
+      "title": "Phone or tablet",
+      "text": "Hold the device sideways. The left thumb moves and the right thumb aims. There are buttons for Fire, Sight, Thrust, Load and pause."
+    },
+    "made": {
+      "title": "What it is made of",
+      "text": "One page, Three.js r128 and two fonts, all served from this site. Nothing is sent anywhere to play, and there is no account to make. Once this app has loaded, the game opens with no network.",
+      "note": "The game opens as a page of its own, outside this app's frame. Its menu has no link back here: use the browser's Back."
+    },
+    "src": {
+      "before": "Three.js is under the ",
+      "mit": "MIT licence",
+      "middle": ". Chakra Petch and Share Tech Mono are under the SIL Open Font License 1.1 (",
+      "chakra": "Chakra Petch",
+      "and": ", ",
+      "mono": "Share Tech Mono",
+      "after": "). Built on ",
+      "kit": "the kit",
+      "end": "."
+    }
+  }
+}

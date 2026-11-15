@@ -1,0 +1,5 @@
+/* The app's own pages, in the kiosk vocabulary, tokens only. */
+@layer kiosk {
+  .md-home .panel { margin-bottom: 12px; }
+  .md-play { min-width: 8em; text-align: center; }
+}

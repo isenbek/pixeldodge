@@ -1,0 +1,5 @@
+# pixeldodge.com: open to search engines and agents (the kit's standard robots.txt, tinymachines/kit scripts/new-app.sh).
+# A page kept out of search results says index: false in src/app.config.ts; the kit writes its noindex.
+User-agent: *
+Allow: /
+Disallow: /api/

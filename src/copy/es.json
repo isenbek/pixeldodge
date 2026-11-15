@@ -1,0 +1,182 @@
+{
+  "notHere": {
+    "title": "No está aquí",
+    "before": "No hay ninguna página en ",
+    "after": ". Aquí hay: {line}",
+    "home": "Inicio"
+  },
+  "home": {
+    "kicker": "el juego",
+    "lede": "Un juego de disparos de rey de la colina en el navegador. Pilotas un robot blindado de dos metros y medio, un MAD, con un compañero de escuadrón de IA, y defiendes un foso en tierra de nadie contra infantería humana. Gana el primer bando que llega a 100 puntos.",
+    "play": "Jugar",
+    "share": "Compartir",
+    "how": {
+      "title": "Cómo se gana",
+      "text": "Un bando puntúa mientras ocupa el foso él solo: un punto por cada 0,9 segundos. Mantenlo, o despéjalo y recupéralo. La partida termina cuando un bando llega a 100."
+    },
+    "levels": {
+      "title": "Tres niveles",
+      "recruit": {
+        "term": "Recruit",
+        "text": "4 enemigos."
+      },
+      "veteran": {
+        "term": "Veteran",
+        "text": "6 enemigos."
+      },
+      "war": {
+        "term": "War Machine",
+        "text": "8 enemigos, con fuego más pesado y más preciso."
+      },
+      "note": "El nivel se elige en el menú del juego. La elección se recuerda en este dispositivo."
+    },
+    "keys": {
+      "title": "Teclado y ratón",
+      "move": {
+        "term": "W A S D",
+        "text": "Moverse. Las flechas giran."
+      },
+      "aim": {
+        "term": "Ratón",
+        "text": "Apuntar. Clic para disparar, clic derecho para la mira."
+      },
+      "thrust": {
+        "term": "Mayús",
+        "text": "Propulsores."
+      },
+      "reload": {
+        "term": "R",
+        "text": "Recargar."
+      },
+      "pause": {
+        "term": "P y M",
+        "text": "Pausa y silencio."
+      }
+    },
+    "touch": {
+      "title": "Teléfono o tableta",
+      "text": "Sostén el dispositivo en horizontal. El pulgar izquierdo mueve y el derecho apunta. Hay botones para Fire, Sight, Thrust, Load y la pausa."
+    },
+    "made": {
+      "title": "De qué está hecho",
+      "text": "Una página, Three.js r128 y dos fuentes, todo servido desde este sitio. No se envía nada a ningún lugar para jugar, y no hay que crear una cuenta. Una vez cargada esta app, el juego se abre sin red.",
+      "note": "El juego se abre como una página propia, fuera del marco de esta app. Su menú no tiene enlace de vuelta: usa el botón Atrás del navegador."
+    },
+    "src": {
+      "before": "Three.js está bajo la ",
+      "mit": "licencia MIT",
+      "middle": ". Chakra Petch y Share Tech Mono están bajo la SIL Open Font License 1.1 (",
+      "chakra": "Chakra Petch",
+      "and": ", ",
+      "mono": "Share Tech Mono",
+      "after": "). Hecho con ",
+      "kit": "el kit",
+      "end": "."
+    }
+  },
+  "app": {
+    "tagline": "pilota un robot blindado de dos metros y medio y defiende la colina",
+    "notHere": "MAD Protocol, un juego de disparos de rey de la colina, y cómo jugarlo.",
+    "pages": {
+      "/": {
+        "title": "MAD Protocol",
+        "kicker": "el juego",
+        "description": "MAD Protocol, un juego de disparos de rey de la colina en el navegador: pilota un robot blindado de dos metros y medio con un compañero de IA y defiende un foso en tierra de nadie contra infantería humana. Gana el primer bando que llega a 100 puntos."
+      },
+      "/theme": {
+        "title": "Temas",
+        "kicker": "tema",
+        "description": "Elige, crea y comparte un tema, ajusta el tamaño del texto y la fuente. Cada tema se revisa por contraste antes de poder guardarlo."
+      },
+      "/sensors": {
+        "title": "Sensores",
+        "kicker": "sensores",
+        "description": "Todo lo que tu teléfono puede detectar y una página web puede leer, en vivo. Nada se graba ni se envía."
+      },
+      "/scan": {
+        "title": "Escanear un código",
+        "kicker": "escanear",
+        "description": "Lee un código QR con la cámara o desde una foto, en el teléfono, y mira lo que contiene antes de que se abra nada."
+      },
+      "/app": {
+        "title": "Esta app",
+        "kicker": "app",
+        "description": "Instala MAD Protocol en tu teléfono o computadora. Funciona sin conexión."
+      },
+      "/developers": {
+        "title": "Úsalo desde un programa",
+        "kicker": "desde un programa",
+        "description": "Un asistente de IA (MCP), un script o una hoja de cálculo que usa MAD Protocol como tú, con un token: cómo conseguir uno, cómo conectarse y cada endpoint de su API."
+      },
+      "/account": {
+        "title": "Tu cuenta",
+        "kicker": "cuenta",
+        "description": "Inicia sesión en MAD Protocol con una llave de acceso: una cuenta para cada app de tinymachines."
+      },
+      "/files": {
+        "title": "Tus archivos",
+        "kicker": "archivos",
+        "description": "Tus archivos: guardados en este dispositivo y, con la sesión iniciada, en tu cuenta, así cada dispositivo en el que inicies sesión los tiene."
+      },
+      "/share": {
+        "title": "Compartido con MAD Protocol",
+        "kicker": "compartir",
+        "description": "Lo que has compartido aquí desde otras apps. Llega a Tus archivos."
+      }
+    },
+    "doors": {
+      "play": {
+        "title": "Jugar",
+        "hint": "El juego.",
+        "pages": {
+          "/": {
+            "title": "Inicio",
+            "hint": "Qué es el juego y cómo se juega."
+          },
+          "/play/index.html": {
+            "title": "Jugar a MAD Protocol",
+            "hint": "Abre el juego, a pantalla completa."
+          }
+        }
+      },
+      "you": {
+        "title": "Tú",
+        "hint": "Tu cuenta, tus archivos, cómo se ve la app, este dispositivo.",
+        "pages": {
+          "/account": {
+            "title": "Tu cuenta",
+            "hint": "Una llave de acceso."
+          },
+          "/files": {
+            "title": "Tus archivos",
+            "hint": "Guardados aquí y en tu cuenta."
+          },
+          "/theme": {
+            "title": "Temas",
+            "hint": "Colores, tamaño del texto, la fuente de lectura."
+          },
+          "/sensors": {
+            "title": "Sensores",
+            "hint": "Todo lo que el teléfono puede detectar y una página puede leer."
+          },
+          "/scan": {
+            "title": "Escanear un código",
+            "hint": "Un código QR, con la cámara o desde una foto."
+          },
+          "/share": {
+            "title": "Compartido con MAD Protocol",
+            "hint": "Lo que otras apps mandaron aquí."
+          },
+          "/app": {
+            "title": "Esta app",
+            "hint": "Instálala y funciona sin conexión."
+          },
+          "/developers": {
+            "title": "Úsalo desde un programa",
+            "hint": "Un asistente de IA o un script, con un token."
+          }
+        }
+      }
+    }
+  }
+}
