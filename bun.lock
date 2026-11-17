@@ -5,7 +5,7 @@
     "": {
       "name": "pixeldodge",
       "dependencies": {
-        "@tinymachines/kit": "git+ssh://git@github.com/tinymachines/kit.git#v0.3.192",
+        "@tinymachines/kit": "git+ssh://git@github.com/tinymachines/kit.git#v0.3.195",
         "react": "^19.1.0",
         "react-dom": "^19.1.0",
         "zustand": "^5.0.0",
@@ -411,7 +411,7 @@
 
     "@tailwindcss/postcss": ["@tailwindcss/postcss@4.3.5", "", { "dependencies": { "@alloc/quick-lru": "^5.2.0", "@tailwindcss/node": "4.3.5", "@tailwindcss/oxide": "4.3.5", "postcss": "^8.5.25", "tailwindcss": "4.3.5" } }, "sha512-FAV37Tlx9wBiT/hkfgVD0Q6CWsP2oUX3lf28nrfjW8+ksILjnpuFulUqWDfNR4/ZiEHHDRBX8DUTzD1Rys687A=="],
 
-    "@tinymachines/kit": ["@tinymachines/kit@git+ssh://git@github.com/tinymachines/kit.git#690345acd95a2b7f006ca4873457b290d487f6a5", { "peerDependencies": { "maplibre-gl": "^6.4.0", "marked": "^18.1.1", "react": "^19.1.0", "react-dom": "^19.1.0", "zustand": "^5.0.0" }, "optionalPeers": ["maplibre-gl", "marked"], "bin": { "kit": "./bin/kit.ts" } }, "690345acd95a2b7f006ca4873457b290d487f6a5"],
+    "@tinymachines/kit": ["@tinymachines/kit@git+ssh://git@github.com/tinymachines/kit.git#92ed8cca867f6df9b0248f27bf526435f3a470fa", { "peerDependencies": { "maplibre-gl": "^6.4.0", "marked": "^18.1.1", "react": "^19.1.0", "react-dom": "^19.1.0", "zustand": "^5.0.0" }, "optionalPeers": ["maplibre-gl", "marked"], "bin": { "kit": "./bin/kit.ts" } }, "92ed8cca867f6df9b0248f27bf526435f3a470fa"],
 
     "@trickfilm400/rollup-plugin-off-main-thread": ["@trickfilm400/rollup-plugin-off-main-thread@3.0.0-pre1", "", { "dependencies": { "ejs": "^3.1.10", "json5": "^2.2.3", "magic-string": "^0.30.21", "string.prototype.matchall": "^4.0.12" } }, "sha512-/67zpWDBLV+oYAEL682s1ktXL0HgqX76f6gaVGkGnVZlBbm1zd0v4Bz8MFF2GGhoX9rvfq3KSQHubFHwa6w6/Q=="],
 
